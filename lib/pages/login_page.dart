@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_textfield.dart';
@@ -12,7 +13,12 @@ class LoginPage extends StatelessWidget {
   final _passwordController = TextEditingController();
 
   // sign in user
-  void _signUserIn() {}
+  void _login() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailController.text,
+      password: _passwordController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +74,7 @@ class LoginPage extends StatelessWidget {
 
               // signin btn
               const SizedBox(height: 15),
-              SignInButton(onPressed: _signUserIn),
+              SignInButton(onPressed: _login),
 
               // or Continue with
               const SizedBox(height: 50),

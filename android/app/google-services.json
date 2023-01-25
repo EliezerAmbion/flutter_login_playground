@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "21901023629",
+    "project_id": "flutter-login-playground",
+    "storage_bucket": "flutter-login-playground.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:21901023629:android:776069e120446dafda05c4",
+        "android_client_info": {
+          "package_name": "com.example.login_playground"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "21901023629-s54pmc0ofeiplskrb5kb8qajpb23kq4u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC-nxuLTUAp5R62rNrnxpNY7Rp3LlKcwcE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "21901023629-s54pmc0ofeiplskrb5kb8qajpb23kq4u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
