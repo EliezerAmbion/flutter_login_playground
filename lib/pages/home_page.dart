@@ -11,6 +11,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final User user = FirebaseAuth.instance.currentUser!;
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -22,8 +24,8 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: const Center(
-        child: Text('Logged in!'),
+      body: Center(
+        child: Text('Logged in! ${user.email}'),
       ),
     );
   }

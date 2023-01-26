@@ -19,6 +19,7 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: TextFormField(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: validator,
         controller: controller,
         obscureText: obscureText,

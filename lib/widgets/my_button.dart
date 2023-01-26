@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
   final Function()? onPressed;
+  final String text;
 
   const MyButton({
     super.key,
     required this.onPressed,
+    required this.text,
   });
 
   @override
@@ -22,9 +24,9 @@ class MyButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        child: const Text(
-          'Sign In',
-          style: TextStyle(
+        child: Text(
+          text,
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
           ),

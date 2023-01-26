@@ -7,26 +7,26 @@ import '../widgets/custom_textfield.dart';
 import '../widgets/my_button.dart';
 import '../widgets/social_media_button.dart';
 
-class LoginPage extends StatefulWidget {
+class SignupPage extends StatefulWidget {
   final VoidCallback togglePages;
 
-  LoginPage({
+  SignupPage({
     super.key,
     required this.togglePages,
   });
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignupPage> createState() => _SignupPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignupPageState extends State<SignupPage> {
   // text editing controllers
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _key = GlobalKey<FormState>();
 
   // sign in user
-  void _login() async {
+  void _signUp() async {
     final bool isValid = _key.currentState!.validate();
     if (!isValid) return;
 
@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
         });
 
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text,
         password: _passwordController.text,
       );
@@ -47,11 +47,10 @@ class _LoginPageState extends State<LoginPage> {
       if (error.code.isNotEmpty) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: const Text(
-              // generic message for login
-              'email and/or password incorrect!',
+            content: Text(
+              error.message.toString(),
               textAlign: TextAlign.center,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             duration: const Duration(seconds: 2),
             backgroundColor: Colors.red.shade400,
@@ -91,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                 // welcome back message
                 const SizedBox(height: 40),
                 Text(
-                  'Welcome back! You have been missed!',
+                  'Let\'s create an account for you!',
                   style: TextStyle(color: Colors.grey[700]),
                 ),
 
@@ -122,29 +121,29 @@ class _LoginPageState extends State<LoginPage> {
                     if (value!.isEmpty) {
                       return 'password can\'t be empty';
                     }
+                    if (value.length < 6) {
+                      return 'password must be 6 characters';
+                    }
                     return null;
                   },
                 ),
 
                 // forgot password
-                const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.only(right: 25),
-                  child: Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: Colors.grey.shade800),
-                    ),
-                  ),
-                ),
+                const SizedBox(height: 15),
+                // Padding(
+                //   padding: const EdgeInsets.only(right: 25),
+                //   child: Align(
+                //     alignment: Alignment.centerRight,
+                //     child: Text(
+                //       'Forgot Password?',
+                //       style: TextStyle(color: Colors.grey.shade800),
+                //     ),
+                //   ),
+                // ),
 
                 // signin btn
-                const SizedBox(height: 15),
-                MyButton(
-                  onPressed: _login,
-                  text: 'Sign In',
-                ),
+                const SizedBox(height: 20),
+                MyButton(onPressed: _signUp, text: 'Sign Up'),
 
                 // or Continue with
                 const SizedBox(height: 50),
@@ -196,11 +195,11 @@ class _LoginPageState extends State<LoginPage> {
                 const SizedBox(height: 50),
                 RichText(
                   text: TextSpan(
-                    text: 'Not a member? ',
+                    text: 'Already a member? ',
                     style: TextStyle(color: Colors.grey.shade800),
                     children: [
                       TextSpan(
-                        text: 'Register Now!',
+                        text: 'Login Now!',
                         recognizer: TapGestureRecognizer()
                           ..onTap = widget.togglePages,
                         style: const TextStyle(
