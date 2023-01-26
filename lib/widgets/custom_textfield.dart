@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
-  final String hintText;
+  final String labelText;
   final bool obscureText;
+  final String? Function(String?) validator;
 
   const CustomTextField({
     super.key,
     required this.controller,
-    required this.hintText,
+    required this.labelText,
     required this.obscureText,
+    required this.validator,
   });
 
   @override
@@ -17,10 +19,11 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: TextFormField(
+        validator: validator,
         controller: controller,
         obscureText: obscureText,
         decoration: InputDecoration(
-          labelText: hintText,
+          labelText: labelText,
           // hintText: hintText,
           labelStyle: TextStyle(color: Colors.grey.shade500),
           floatingLabelStyle: TextStyle(

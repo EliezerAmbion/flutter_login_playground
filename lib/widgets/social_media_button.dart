@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class SocialMediaSignInButtons extends StatelessWidget {
+class SocialMediaButton extends StatelessWidget {
   final String imagePath;
 
-  const SocialMediaSignInButtons({
+  const SocialMediaButton({
     super.key,
     required this.imagePath,
   });

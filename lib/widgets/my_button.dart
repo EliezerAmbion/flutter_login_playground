@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class SignInButton extends StatelessWidget {
+class MyButton extends StatelessWidget {
   final Function()? onPressed;
 
-  const SignInButton({
+  const MyButton({
     super.key,
     required this.onPressed,
   });
