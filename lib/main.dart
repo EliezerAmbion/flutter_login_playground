@@ -2,8 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import '/pages/auth_page.dart';
 import '/pages/home_page.dart';
+import '/pages/login_page.dart';
+import '/pages/signup_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -27,8 +28,27 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({super.key});
+
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  bool isLogin = true;
+
+  void _toggle() {
+    setState(() {
+      isLogin = !isLogin;
+    });
+  }
+
+  @override
+  void initState() {
+    isLogin = true;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +63,9 @@ class MainPage extends StatelessWidget {
 
           // user is NOT logged in
           else {
-            return const AuthPage();
+            return isLogin
+                ? LoginPage(togglePages: _toggle)
+                : SignupPage(togglePages: _toggle);
           }
         },
       ),
